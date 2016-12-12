@@ -1,5 +1,6 @@
 *.zip
 apple_health_export
+*.csv
 
 # Created by https://www.gitignore.io/api/linux,node
 
