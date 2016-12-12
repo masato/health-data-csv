@@ -16,9 +16,5 @@ ZipファイルからXMLを取り出し歩数データをCSVにコンバート�
 以下の例では2016-12-01からのデータを対象にします。
 
 ```bash
-$ docker run -it --rm \
-  -v $PWD:/app \
-  -w /app \
-  continuumio/anaconda3 \
-  python convert.py -f 書き出す.zip -s 2016-12-01
+$ docker run -it --rm -v $PWD:/app -w /app continuumio/anaconda3 python convert.py -f 書き出す.zip -s 2016-12-01
 ```
