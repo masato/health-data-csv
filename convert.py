@@ -45,8 +45,8 @@ def main(argv):
     df.index = pd.to_datetime(df['startDate'])
 
     # 歩数だけ
-    steps_tmp = df[df['type'] == 'HKQuantityTypeIdentifierStepCount']
-    steps = steps_tmp['value'].astype(float)
+    steps = df[df['type'] == 'HKQuantityTypeIdentifierStepCount'].copy()
+    steps['value'] = steps['value'].astype(float)
 
     # 開始日が条件にある場合スライス
     if args.start:
