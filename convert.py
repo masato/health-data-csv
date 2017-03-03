@@ -13,9 +13,9 @@ def main(argv):
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-f', '--file',
-                        default='書き出す.zip',
+                        default='書き出した.zip',
                         type=str,
-                        help='zipファイル名 (書き出す.zip)')
+                        help='zipファイル名 (書き出した.zip)')
     parser.add_argument('-s', '--start',
                         action='store',
                         default='2016-01-01',
@@ -31,7 +31,7 @@ def main(argv):
 
     zipfile.ZipFile(args.file).extractall()
 
-    parsed = objectify.parse(open('apple_health_export/書き出す.xml'
+    parsed = objectify.parse(open('apple_health_export/書き出したデータ.xml'
                                   .encode('utf-8').decode('cp437')))
 
     root = parsed.getroot()
@@ -43,10 +43,12 @@ def main(argv):
 
     df = DataFrame(data)
     df.index = pd.to_datetime(df['startDate'])
-    df['value'] = df['value'].astype(float)
+
+    #df['value'] = df['value'].astype(float)
 
     # 歩数だけ
-    steps = df[df['type'] == 'HKQuantityTypeIdentifierStepCount']
+    steps_tmp = df[df['type'] == 'HKQuantityTypeIdentifierStepCount']
+    steps = steps_tmp['value'].astype(float)
 
     # 開始日が条件にある場合スライス
     if args.start:
