@@ -44,8 +44,6 @@ def main(argv):
     df = DataFrame(data)
     df.index = pd.to_datetime(df['startDate'])
 
-    #df['value'] = df['value'].astype(float)
-
     # 歩数だけ
     steps_tmp = df[df['type'] == 'HKQuantityTypeIdentifierStepCount']
     steps = steps_tmp['value'].astype(float)
